@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 
-import argparse
-from gendiff.parser import parser
+from gendiff.gendiff_parser import parser
+from gendiff.generate_diff import generate_diff
 
 
 def main():
-    parser()
+    file1, file2 = parser()
+    result = generate_diff(file1, file2)
+    print(result.replace('"', ''))
 
 
 if __name__ == '__main__':
