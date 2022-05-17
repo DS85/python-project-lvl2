@@ -1,0 +1,12 @@
+name: lint-check
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+        - run:
+            pip install poetry
+            make install
+            make lint
