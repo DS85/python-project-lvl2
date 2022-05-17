@@ -3,7 +3,7 @@ name: pytests-check
 on: push
 
 jobs:
-  tests-run:
+  test:
     runs-on: ubuntu-latest
     steps:
         - run:
