@@ -31,5 +31,4 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: pytest coverage
-          #poetry run pytest --cov=gendiff
+          coverageCommand: poetry run pytest --cov=gendiff
