@@ -1,13 +1,22 @@
 import json
-import os.path
+import os.path as path
+import yaml
 
 
 def generate_diff(file1, file2):
-    # Read files
-    with open(os.path.abspath(file1)) as f1:
-        f1_data = json.load(f1)
-    with open(os.path.abspath(file2)) as f2:
-        f2_data = json.load(f2)
+    # Get file format and read files
+    ext1 = path.splitext(file1)[1]
+    ext2 = path.splitext(file2)[1]
+    with open(path.abspath(file1)) as f1, open(path.abspath(file2)) as f2:
+        if ext1 == '.json' and ext2 == '.json':
+            f1_data = json.load(f1)
+            f2_data = json.load(f2)
+        elif ext1 in ('.yml', '.yaml') and ext2 in ('.yml', '.yaml'):
+            f1_data = yaml.full_load(f1)
+            f2_data = yaml.full_load(f2)
+        else:
+            print('File extension is not supported')
+            return
 
     # Form list of keys for searching in files and sorting:
     elements_list = list()
@@ -34,4 +43,8 @@ def generate_diff(file1, file2):
             else:  # If element in file2 only:
                 result_dict[f'+ {i}'] = f2_data[i]
 
+    print(json.dumps(result_dict, indent=2))
     return json.dumps(result_dict, indent=2)
+
+
+#generate_diff('./files/file1.yml', './files/file2.yaml')
