@@ -6,7 +6,9 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-        - run:
-            pip install poetry
-            make install
-            make lint
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - run: |
+          pip install poetry
+          make install
+          make lint
