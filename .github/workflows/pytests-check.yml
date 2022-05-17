@@ -9,4 +9,4 @@ jobs:
         - run:
             pip install poetry
             make install
-            poetry run pytest
+            make test
