@@ -6,7 +6,10 @@ jobs:
   tests-run:
     runs-on: ubuntu-latest
     steps:
-        - run:
+      - name: Install
+      - run:
             pip install poetry
             make install
+      - name: Run tests
+      - run:
             make test
