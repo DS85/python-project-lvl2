@@ -5,8 +5,7 @@ import yaml
 
 def generate_diff(file1, file2):
     # Get file format and read files
-    ext1 = path.splitext(file1)[1]
-    ext2 = path.splitext(file2)[1]
+    ext1, ext2 = path.splitext(file1)[1], path.splitext(file2)[1]
     with open(path.abspath(file1)) as f1, open(path.abspath(file2)) as f2:
         if ext1 == '.json' and ext2 == '.json':
             f1_data = json.load(f1)

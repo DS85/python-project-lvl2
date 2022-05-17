@@ -26,3 +26,9 @@ jobs:
           pip install poetry
           make install
           make test
+
+      - uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: 83cf74dbf0f8088d73e453d80911a0e87571cf239cc58e72a9562d6df22e769e
+        with:
+          coverageCommand: poetry run pytest --cov=gendiff
