@@ -1,0 +1,12 @@
+name: pytests-check
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+        - run:
+            pip install poetry
+            make install
+            poetry run pytest
