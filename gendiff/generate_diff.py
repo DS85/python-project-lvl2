@@ -15,7 +15,6 @@ def generate_diff(file1, file2):
             f2_data = yaml.full_load(f2)
         else:
             return 'File extension is not supported'
-            
 
     # Form list of keys for searching in files and sorting:
     elements_list = list()
