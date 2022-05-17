@@ -14,8 +14,8 @@ def generate_diff(file1, file2):
             f1_data = yaml.full_load(f1)
             f2_data = yaml.full_load(f2)
         else:
-            print('File extension is not supported')
-            return
+            return 'File extension is not supported'
+            
 
     # Form list of keys for searching in files and sorting:
     elements_list = list()
@@ -42,8 +42,4 @@ def generate_diff(file1, file2):
             else:  # If element in file2 only:
                 result_dict[f'+ {i}'] = f2_data[i]
 
-    print(json.dumps(result_dict, indent=2))
     return json.dumps(result_dict, indent=2)
-
-
-#generate_diff('./files/file1.yml', './files/file2.yaml')
