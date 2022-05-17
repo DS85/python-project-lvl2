@@ -1,12 +1,14 @@
-name: pytests-check
+
+   
+name: lint-check
 
 on: push
 
 jobs:
-  tests-run:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - run:
+        - run:
             pip install poetry
             make install
             make test
