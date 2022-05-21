@@ -5,5 +5,13 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/53bd63a76bfd13ebe029/maintainability)](https://codeclimate.com/github/DS85/python-project-lvl2/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/53bd63a76bfd13ebe029/test_coverage)](https://codeclimate.com/github/DS85/python-project-lvl2/test_coverage)
 
+# About
+The program takes two files (json and yaml are supported) and finds differences between them. Different types of output formats are supported. Use -f command to specify it:
+- stylish: json-like format
+- plain: text description
+
+## How to install
+For installation use the command: make package-install.
+
 ## How to use
 [![asciicast](https://asciinema.org/a/oec2k3gzhg0tcjJCiAVnesqSz.svg)](https://asciinema.org/a/oec2k3gzhg0tcjJCiAVnesqSz)
