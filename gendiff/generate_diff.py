@@ -1,7 +1,8 @@
 import json
 import os.path as path
 import yaml
-from gendiff.formatter import format_stylish
+from gendiff.formatters.plain import format_plain
+from gendiff.formatters.stylish import format_stylish
 
 
 def generate_diff(file1, file2, format='stylish'):
@@ -21,10 +22,16 @@ def generate_diff(file1, file2, format='stylish'):
             f2_data = yaml.full_load(f2)
         else:
             return 'File extension is not supported'
-
-    result = compare_dicts(f1_data, f2_data)
-
-    return format_stylish(result)
+    # Get differences
+    diff = compare_dicts(f1_data, f2_data)
+    # Format differences
+    if format == 'stylish':
+        result = format_stylish(diff)
+    elif format == 'plain':
+        result = format_plain(diff)
+    else:
+        result = f'{format} - is unsupported format'
+    return result
 
 
 def compare_dicts(dict1, dict2):

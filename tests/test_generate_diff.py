@@ -25,3 +25,8 @@ def test_generate_diff_yaml_tree():
     result = generate_diff('./tests/fixtures/file1-v2.yml', './tests/fixtures/file2-v2.yaml')
     with open('./tests/fixtures/result2.txt') as f:
         assert result == f.read()
+
+def test_generate_diff_json_plain():
+    result = generate_diff('./tests/fixtures/file1-v2.json', './tests/fixtures/file2-v2.json', 'plain')
+    with open('./tests/fixtures/result_plain.txt') as f:
+        assert result == f.read()

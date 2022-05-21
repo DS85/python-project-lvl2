@@ -1,3 +1,6 @@
+from gendiff.formatters.common import format_special_val
+
+
 def format_stylish(diff, level=0):
     '''
     Formats list of differences into "stylish" view. Arguments:
@@ -7,7 +10,6 @@ def format_stylish(diff, level=0):
     indent = '  '
     for _ in range(level):
         indent += '    '
-
     result = '{\n'
     for i in diff:
         if i[1] == 'added':
@@ -39,12 +41,6 @@ def format_stylish_val(value, indent):
         for k, v in value.items():
             result += f'{indent}  {k}: {format_stylish_val(v, indent)}\n'
         result += f'{indent[:-2]}}}'
-    elif value is False:
-        result = 'false'
-    elif value is True:
-        result = 'true'
-    elif value is None:
-        result = 'null'
     else:
-        result = value
+        result = format_special_val(value)
     return result
