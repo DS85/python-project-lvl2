@@ -1,12 +1,18 @@
 import json
 import os.path as path
 import yaml
+from gendiff.formatter import format_stylish
 
 
-def generate_diff(file1, file2):
+def generate_diff(file1, file2, format='stylish'):
+    '''
+    Finds differences in two files. Arguments:
+    file1 - path to file1
+    file2 - path to file2
+    '''
     # Get file format and read files
-    ext1, ext2 = path.splitext(file1)[1], path.splitext(file2)[1]
     with open(path.abspath(file1)) as f1, open(path.abspath(file2)) as f2:
+        ext1, ext2 = path.splitext(file1)[1], path.splitext(file2)[1]
         if ext1 == '.json' and ext2 == '.json':
             f1_data = json.load(f1)
             f2_data = json.load(f2)
@@ -16,29 +22,54 @@ def generate_diff(file1, file2):
         else:
             return 'File extension is not supported'
 
-    # Form list of keys for searching in files and sorting:
-    elements_list = list()
-    for k in f1_data.keys():
-        if k not in elements_list:
-            elements_list.append(k)
-    for k in f2_data.keys():
-        if k not in elements_list:
-            elements_list.append(k)
-    elements_list.sort()
+    result = compare_dicts(f1_data, f2_data)
 
-    # Form dictionary with files differences
-    result_dict = {}
-    for i in elements_list:
-        if i in f1_data and i in f2_data:  # If elements in both files:
-            if f1_data[i] == f2_data[i]:  # And values are equal:
-                result_dict[f'  {i}'] = f1_data[i]
-            else:  # And values are not equal:
-                result_dict[f'- {i}'] = f1_data[i]
-                result_dict[f'+ {i}'] = f2_data[i]
-        else:  # If elements are not in both files:
-            if i in f1_data:  # If element in file1 only:
-                result_dict[f'- {i}'] = f1_data[i]
-            else:  # If element in file2 only:
-                result_dict[f'+ {i}'] = f2_data[i]
+    return format_stylish(result)
 
-    return json.dumps(result_dict, indent=2)
+
+def compare_dicts(dict1, dict2):
+    '''
+    Compares two dictionaries and returns list of diferences. Arguments:
+    dict1 - dictionary1
+    dict2 - dictionary2
+    '''
+    diff = []
+    all_keys = list(dict1.keys() | dict2.keys())
+
+    for i in sorted(all_keys):
+        name = i  # Element name
+        status = ''  # not_changed, added, removed, changed, have_children
+        value = ''  # Element value if is not dict
+        new_value = ''  # Element new value if value is not dict
+        children = []  # List of children
+        # Added
+        if i not in dict1:
+            status = 'added'
+            new_value = dict2[i]
+        # Removed
+        elif i not in dict2:
+            status = 'removed'
+            value = dict1[i]
+        # Have children
+        elif type(dict1[i]) is dict and type(dict2[i]) is dict:
+            status = 'have_children'
+            children = compare_dicts(dict1[i], dict2[i])
+        # Not changed
+        elif (i in dict1 and i in dict2) and (dict1[i] == dict2[i]):
+            status = 'not_changed'
+            value = dict1[i]
+        # Changed
+        else:
+            status = 'changed'
+            value = dict1[i]
+            new_value = dict2[i]
+
+        element = []
+        element.append(name)
+        element.append(status)
+        element.append(value)
+        element.append(new_value)
+        element.append(children)
+        diff.append(element)
+
+    return diff

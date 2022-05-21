@@ -5,8 +5,8 @@ from gendiff.generate_diff import generate_diff
 
 
 def main():
-    file1, file2 = parser()
-    result = generate_diff(file1, file2)
+    file1, file2, format = parser()
+    result = generate_diff(file1, file2, format)
     print(result.replace('"', ''))
 
 
