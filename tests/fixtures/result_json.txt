@@ -1,0 +1,148 @@
+[
+    {
+        "name": "common",
+        "status": "have_children",
+        "value": "",
+        "new_value": "",
+        "children": [
+            {
+                "name": "follow",
+                "status": "added",
+                "value": "",
+                "new_value": false,
+                "children": []
+            },
+            {
+                "name": "setting1",
+                "status": "not_changed",
+                "value": "Value 1",
+                "new_value": "",
+                "children": []
+            },
+            {
+                "name": "setting2",
+                "status": "removed",
+                "value": 200,
+                "new_value": "",
+                "children": []
+            },
+            {
+                "name": "setting3",
+                "status": "changed",
+                "value": true,
+                "new_value": null,
+                "children": []
+            },
+            {
+                "name": "setting4",
+                "status": "added",
+                "value": "",
+                "new_value": "blah blah",
+                "children": []
+            },
+            {
+                "name": "setting5",
+                "status": "added",
+                "value": "",
+                "new_value": {
+                    "key5": "value5"
+                },
+                "children": []
+            },
+            {
+                "name": "setting6",
+                "status": "have_children",
+                "value": "",
+                "new_value": "",
+                "children": [
+                    {
+                        "name": "doge",
+                        "status": "have_children",
+                        "value": "",
+                        "new_value": "",
+                        "children": [
+                            {
+                                "name": "wow",
+                                "status": "changed",
+                                "value": "",
+                                "new_value": "so much",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "key",
+                        "status": "not_changed",
+                        "value": "value",
+                        "new_value": "",
+                        "children": []
+                    },
+                    {
+                        "name": "ops",
+                        "status": "added",
+                        "value": "",
+                        "new_value": "vops",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "group1",
+        "status": "have_children",
+        "value": "",
+        "new_value": "",
+        "children": [
+            {
+                "name": "baz",
+                "status": "changed",
+                "value": "bas",
+                "new_value": "bars",
+                "children": []
+            },
+            {
+                "name": "foo",
+                "status": "not_changed",
+                "value": "bar",
+                "new_value": "",
+                "children": []
+            },
+            {
+                "name": "nest",
+                "status": "changed",
+                "value": {
+                    "key": "value"
+                },
+                "new_value": "str",
+                "children": []
+            }
+        ]
+    },
+    {
+        "name": "group2",
+        "status": "removed",
+        "value": {
+            "abc": 12345,
+            "deep": {
+                "id": 45
+            }
+        },
+        "new_value": "",
+        "children": []
+    },
+    {
+        "name": "group3",
+        "status": "added",
+        "value": "",
+        "new_value": {
+            "deep": {
+                "id": {
+                    "number": 45
+                }
+            },
+            "fee": 100500
+        },
+        "children": []
+    }
+]
