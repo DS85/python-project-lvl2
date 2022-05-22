@@ -9,6 +9,7 @@
 The program takes two files (json and yaml are supported) and finds differences between them. Different types of output formats are supported. Use -f command to specify it:
 - stylish: json-like format
 - plain: text description
+- json
 
 ## How to install
 For installation use the command: make package-install.
