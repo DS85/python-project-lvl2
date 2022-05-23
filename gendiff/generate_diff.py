@@ -34,7 +34,7 @@ def generate_diff(file1, file2, format='stylish'):
         result = format_json(diff)
     else:
         result = f'{format} - is unsupported format'
-    print(result)
+    result = result.strip()
     return result
 
 
