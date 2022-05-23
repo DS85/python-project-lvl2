@@ -1,7 +1,7 @@
 from gendiff.formatters.common import format_special_val
 
 
-def format_plain(diff, level=0,  addr=[]):
+def format_plain(diff, level=0, addr=[]):
     '''
     Format list of differences into "plain" view. Arguments:
     diff - list of differences
