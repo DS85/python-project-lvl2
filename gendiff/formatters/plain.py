@@ -25,7 +25,7 @@ def format_plain(diff, level=0, addr=[]):
             result += f'Property \'{".".join(addr)}\' was updated. From '
             result += f'{format_plain_val(i[2])} to {format_plain_val(i[3])}\n'
         elif i[1] == 'have_children':
-            result += format_plain(i[4], level+1, addr)
+            result += format_plain(i[4], level + 1, addr)
     return result
 
 
