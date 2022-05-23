@@ -37,6 +37,6 @@ def format_plain_val(value):
         result = '[complex value]'
     else:
         result = format_special_val(value)
-        if result not in ('false', 'true', 'null'):
+        if result not in ('false', 'true', 'null') and type(result) != int:
             result = f"'{result}'"
     return result
