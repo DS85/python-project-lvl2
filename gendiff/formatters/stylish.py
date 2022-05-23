@@ -23,7 +23,7 @@ def format_stylish(diff, level=0):
             result += f'{indent}+ {i[0]}: {format_stylish_val(i[3], indent)}\n'
         elif i[1] == 'have_children':
             result += f'{indent}  {i[0]}: '
-            result += format_stylish(i[4], level+1)
+            result += format_stylish(i[4], level + 1)
     result += f'{indent[:-2]}}}\n'
     return result
 
